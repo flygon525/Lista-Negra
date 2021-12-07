@@ -8,4 +8,9 @@ export default class Api {
         let r = await api.get(`/listar`);
         return r.data;
     }
+
+    async inserirNomes(id_nome) {
+        let r = await api.post('/inserir', {id_nome})
+        return r.data;
+    }
 }

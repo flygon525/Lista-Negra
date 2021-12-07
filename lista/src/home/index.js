@@ -3,12 +3,20 @@ import Api from '../services/api';
 const api = new Api();
 
 export default function Lista(){
-    const [nomes, setNome] = useState([]);
+    const [nomes, setNomes] = useState([]);
+    const [nome, setNome] = useState('');
 
     async function listando(){
         let f = await api.listarNomes();
         console.log(f)
-        setNome(f);
+        setNomes(f);
+    }
+
+    async function inserindo() {
+        let f = await api.inserirNomes(nome);
+        alert('inseriu')
+
+        listando();
     }
 
     useEffect(()=> {
@@ -18,13 +26,11 @@ export default function Lista(){
     return(
         
         <div>
-            
-            
             <div>Novo</div>
 
             <div>Nome:</div>
-            <input/>
-            <button> ok </button>
+            <input type="text" value={nome} onChange={e => setNome(e.target.value)}/>
+            <button onClick={inserindo}> ok </button>
                 
             <div>Listar</div>
             {nomes.map(item =>
