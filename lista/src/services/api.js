@@ -5,7 +5,7 @@ const api = axios.create({
 
 export default class Api {
     async listarNomes() {
-        let r = await api.get(`/listar`);
+        let r = await api.get('/listar');
         return r.data;
     }
 
